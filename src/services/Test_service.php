@@ -1,10 +1,10 @@
 <?php
+
 namespace MiniappLib\services;
 /**
  * Class Test_service
  * @property test_model $test_model
  */
-
 class Test_service extends Base_service
 {
 

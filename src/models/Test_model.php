@@ -1,4 +1,5 @@
 <?php
+
 namespace MiniappLib\models;
 class Test_model extends \MY_Model
 {
