@@ -5,7 +5,7 @@ namespace MiniappLib\services;
  * @property test_model $test_model
  */
 
-class test_service extends Base_service
+class Test_service extends Base_service
 {
 
     public function __construct()
