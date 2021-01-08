@@ -1,7 +1,5 @@
 <?php
-
-namespace miniapp\services;
-
+namespace MiniappLib\services;
 /**
  * Class Test_service
  * @property test_model $test_model
