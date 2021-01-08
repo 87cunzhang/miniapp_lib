@@ -5,17 +5,17 @@ namespace MiniappLib\services;
  * @property test_model $test_model
  */
 //加载service子类
-load_class('MY_Service', 'core', '');
-include 'system/core/Loader.php';
 
-class Test_service extends \MY_Service
+
+class Base_service extends \MY_Service
 {
 
     public function __construct()
     {
         parent::__construct();
+        load_class('MY_Service', 'core', '');
+        include_once 'system/core/Loader.php';
         $this->load->add_package_path(__DIR__ . '/miniapp_lib/');
-        $this->load->model('test_model');
     }
 
     public function test()
