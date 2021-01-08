@@ -11,13 +11,11 @@ class Test_service extends Base_service
     public function __construct()
     {
         parent::__construct();
-        $this->load->add_package_path(__DIR__ . '/miniapp_lib/');
         $this->load->model('test_model');
     }
 
     public function test()
     {
-        echo 111;
         $res = $this->test_model->get();
         var_dump($res);
     }
