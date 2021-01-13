@@ -3,7 +3,7 @@
 namespace MiniappLib\services;
 /**
  * Class Miniapp_service
- * @property mini_tmpl_config_model $mini_tmpl_config_model
+ * @property Mini_tmpl_config_model $Mini_tmpl_config_model
  */
 class Miniapp_service extends Base_service
 {
@@ -11,8 +11,8 @@ class Miniapp_service extends Base_service
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('mini_tmpl_config_model');
-        $this->load->model('mini_tmpl_history_model');
+        $this->load->model('Mini_tmpl_config_model');
+        $this->load->model('Mini_tmpl_history_model');
     }
 
 
@@ -22,7 +22,7 @@ class Miniapp_service extends Base_service
      */
     public function get_mini_tmpl_config_list()
     {
-        return $this->mini_tmpl_config_model->filter();
+        return $this->Mini_tmpl_config_model->filter();
     }
 
     /**
@@ -106,12 +106,12 @@ class Miniapp_service extends Base_service
      */
     public function do_add_tmpl_config($tmpl_name, $tmpl_id, $new_version)
     {
-        $is_exist = $this->mini_tmpl_config_model->get(compact('tmpl_id'));
+        $is_exist = $this->Mini_tmpl_config_model->get(compact('tmpl_id'));
         if ($is_exist) {
             return get_fail_result('请勿重复添加');
         }
         $create_time = $update_time = time();
-        $this->mini_tmpl_config_model->save(compact('tmpl_name', 'tmpl_id', 'new_version', 'update_time', 'create_time'));
+        $this->Mini_tmpl_config_model->save(compact('tmpl_name', 'tmpl_id', 'new_version', 'update_time', 'create_time'));
         return get_success_result('操作成功');
     }
 
@@ -123,7 +123,7 @@ class Miniapp_service extends Base_service
      */
     public function get_tmpl_config_by_id($id)
     {
-        $tmpl_config_info = $this->mini_tmpl_config_model->get(compact('id'));
+        $tmpl_config_info = $this->Mini_tmpl_config_model->get(compact('id'));
         return $tmpl_config_info;
     }
 
@@ -139,7 +139,7 @@ class Miniapp_service extends Base_service
     public function do_edit_tmpl_config($id, $tmpl_name, $tmpl_id, $new_version)
     {
         $update_time = time();
-        $this->mini_tmpl_config_model->update(compact('tmpl_name', 'tmpl_id', 'new_version'), compact('id'));
+        $this->Mini_tmpl_config_model->update(compact('tmpl_name', 'tmpl_id', 'new_version'), compact('id'));
         return get_result(\result_consts::SUCCESS, 'ok');
     }
 
@@ -169,13 +169,13 @@ class Miniapp_service extends Base_service
             $where['history_id'] = $history_id;
         }
 
-        $list = $this->mini_tmpl_history_model->paginate($offset, $page_size, $where, '', array('id' => 'desc'));
+        $list = $this->Mini_tmpl_history_model->paginate($offset, $page_size, $where, '', array('id' => 'desc'));
         foreach ($list as &$item) {
             $item['update_time'] = date('Y-m-d H:i', $item['update_time']);
             $item['status']      = \miniapp_consts::$miniapp_update_status[$item['status']];
         }
 
-        $total = $this->mini_tmpl_history_model->count_results($where);
+        $total = $this->Mini_tmpl_history_model->count_results($where);
 
         if ($total) {
             $result['list']  = $list;
