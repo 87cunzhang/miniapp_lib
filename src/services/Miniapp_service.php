@@ -37,24 +37,14 @@ class Miniapp_service extends Base_service
     {
         $result = array();
         $where  = array();
-
-        if ($shop_id) {
-            $where['shop_id'] = $shop_id;
-        }
-
-        if ($history_id) {
-            $where['history_id'] = $history_id;
-        }
-
-        if ($status !== '') {
-            $where['status'] = $status;
-        }
-
+        if ($shop_id) $where['shop_id'] = $shop_id;
+        if ($history_id) $where['history_id'] = $history_id;
+        if ($status !== '') $where['status'] = $status;
         $_tmpl_id_model_map = \miniapp_consts::$_tmpl_id_model_map;
         $tmpl_model_name    = $_tmpl_id_model_map[$tmpl_id];
         $this->load->model($tmpl_model_name);
-
         $instance_list = $this->$tmpl_model_name->paginate($offset, $page_size, $where, '', array('id' => 'desc'));
+
         foreach ($instance_list as &$item) {
             $item['update_time'] = date('Y-m-d H:i', $item['update_time']);
             $item['status']      = \miniapp_consts::$miniapp_status[$item['status']];
@@ -107,9 +97,7 @@ class Miniapp_service extends Base_service
     public function do_add_tmpl_config($tmpl_name, $tmpl_id, $new_version)
     {
         $is_exist = $this->mini_tmpl_config_model->get(compact('tmpl_id'));
-        if ($is_exist) {
-            return get_fail_result('请勿重复添加');
-        }
+        if ($is_exist) return get_fail_result('请勿重复添加');
         $create_time = $update_time = time();
         $this->mini_tmpl_config_model->save(compact('tmpl_name', 'tmpl_id', 'new_version', 'update_time', 'create_time'));
         return get_success_result('操作成功');
@@ -158,18 +146,12 @@ class Miniapp_service extends Base_service
     {
         $result = array();
         $where  = array();
-
         //模板ID
-        if ($tmpl_id) {
-            $where['tmpl_id'] = $tmpl_id;
-        }
-
+        if ($tmpl_id) $where['tmpl_id'] = $tmpl_id;
         //批次ID
-        if ($history_id) {
-            $where['history_id'] = $history_id;
-        }
-
+        if ($history_id) $where['id'] = $history_id;
         $list = $this->mini_tmpl_history_model->paginate($offset, $page_size, $where, '', array('id' => 'desc'));
+
         foreach ($list as &$item) {
             $item['update_time'] = date('Y-m-d H:i', $item['update_time']);
             $item['status']      = \miniapp_consts::$miniapp_update_status[$item['status']];
