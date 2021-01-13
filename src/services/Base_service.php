@@ -18,11 +18,4 @@ class Base_service extends \MY_Service
         $this->load->add_package_path(__DIR__ . '/miniapp_lib/');
     }
 
-    public function test()
-    {
-        echo 111;
-        $res = $this->test_model->get();
-        var_dump($res);
-    }
-
 }
