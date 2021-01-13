@@ -1,5 +1,5 @@
-<?php if(!defined('BASEPATH')) exit('No direct script access allowed');
-
+<?php
+namespace MiniappLib\models;
 class Mini_tmpl_config_model extends MY_Model
 {
     protected $db_group_name = 'member';
