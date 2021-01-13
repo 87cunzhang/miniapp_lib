@@ -91,7 +91,7 @@ class Miniapp_service extends Base_service
      * 更新所有小程序
      * @param $new_version
      */
-    public function update_all_shop($new_version)
+    public function update_miniapp_all($new_version)
     {
         AMQP_basic_publish(json_encode(['type' => 'miniapp_update_all', 'data' => array('new_version' => $new_version)]), 'zkds', 'zkds', TRUE);
         return get_success_result('ok');
