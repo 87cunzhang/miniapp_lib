@@ -1,5 +1,4 @@
 <?php
-namespace MiniappLib\models;
 class Mini_tmpl_config_model extends \MY_Model
 {
     protected $db_group_name = 'member';
