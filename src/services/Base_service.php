@@ -15,7 +15,7 @@ class Base_service extends \MY_Service
     {
         parent::__construct();
         include_once 'system/core/Loader.php';
-        $this->load->add_package_path(__DIR__ . '/miniapp_lib/');
+        $this->load->add_package_path(__DIR__ . '/../models/');
     }
 
 }
